@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ArcNode: AI coprocessing for XR gaming</title>
+<meta name="description" content="ArcNode is a hardware platform that gives XR glasses and games real-time AI vision. Join the waitlist.">
+<meta property="og:title" content="ArcNode: AI coprocessing for XR gaming">
+<meta property="og:description" content="A hardware platform that gives XR glasses and games real-time AI vision.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M4 26A22 22 0 0 1 26 4' fill='none' stroke='%232F5BFF' stroke-width='5' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E9EEF2; --ink:#12202E; --muted:#4A5A6B; --accent:#2F5BFF; --signal:#FFB020; --panel:#FFFFFF;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+header{padding:24px 0}
+header .wrap{display:flex;justify-content:space-between;align-items:center}
+.logo{font:800 1.35rem var(--display);text-decoration:none;letter-spacing:-.01em}
+header nav a{margin-left:24px;text-decoration:none;font-weight:500;color:var(--muted)}
+header nav a:hover{color:var(--ink)}
+
+.hero{position:relative;overflow:hidden;padding:72px 0 112px}
+.hero .wrap{position:relative;z-index:1}
+.hero h1{font:800 clamp(2.6rem,7vw,5.5rem)/.98 var(--display);letter-spacing:-.03em;max-width:12ch}
+.hero p.lead{margin-top:28px;max-width:46ch;font-size:1.25rem;color:var(--muted)}
+.cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px;max-width:520px}
+.cta input{flex:1 1 240px;padding:15px 18px;font:inherit;border:2px solid var(--ink);border-radius:10px;background:var(--panel);color:var(--ink)}
+.cta button{padding:15px 26px;font:500 1rem var(--body);color:#fff;background:var(--accent);border:2px solid var(--accent);border-radius:10px;cursor:pointer}
+.cta button:hover{background:var(--ink);border-color:var(--ink)}
+.fine{margin-top:12px;font-size:.9rem;color:var(--muted)}
+
+/* the one memorable element: arcs that draw in once */
+.arcs{position:absolute;right:-12%;top:50%;width:min(900px,95vw);transform:translateY(-50%);z-index:0;pointer-events:none}
+.arcs path{fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.8s cubic-bezier(.2,.7,.2,1) forwards}
+.arcs path:nth-child(1){stroke:var(--accent);stroke-width:14;animation-delay:.1s}
+.arcs path:nth-child(2){stroke:var(--accent);stroke-width:10;opacity:.65;animation-delay:.3s}
+.arcs path:nth-child(3){stroke:var(--accent);stroke-width:7;opacity:.4;animation-delay:.5s}
+.arcs path:nth-child(4){stroke:var(--accent);stroke-width:4;opacity:.25;animation-delay:.7s}
+.arcs circle{fill:var(--signal);opacity:0;animation:pop .4s 1.8s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{to{opacity:1}}
+@media (max-width:760px){.arcs{opacity:.35;right:-40%}}
+
+section{padding:80px 0}
+h2{font:800 clamp(1.9rem,4vw,2.9rem)/1.05 var(--display);letter-spacing:-.02em;max-width:18ch}
+.sub{margin-top:14px;color:var(--muted);max-width:56ch}
+
+.how{background:var(--ink);color:#EAF0F6}
+.how .sub{color:#A9B8C7}
+.steps{margin-top:48px;display:grid;gap:0;grid-template-columns:repeat(3,1fr)}
+.step{padding:0 28px 0 0}
+.step + .step{padding-left:28px;border-left:2px solid #2B3D50}
+.step h3{font:500 1.2rem var(--display);color:#fff}
+.step p{margin-top:8px;color:#A9B8C7}
+@media (max-width:760px){
+  .steps{grid-template-columns:1fr;gap:32px}
+  .step,.step + .step{padding:0;border:0}
+}
+
+.tiers{margin-top:48px;display:grid;gap:24px;grid-template-columns:repeat(2,1fr)}
+.tier{background:var(--panel);border-radius:18px;padding:36px}
+.tier.pro{border:3px solid var(--accent)}
+.tier h3{font:800 1.7rem var(--display)}
+.tier .price{margin-top:4px;color:var(--muted)}
+.tier ul{margin:22px 0 0;padding-left:1.1em}
+.tier li{margin-top:8px}
+@media (max-width:760px){.tiers{grid-template-columns:1fr}}
+
+.final{text-align:left}
+.final .cta{margin-top:28px}
+footer{padding:32px 0 48px;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+@media (prefers-reduced-motion:reduce){
+  .arcs path{animation:none;stroke-dashoffset:0}
+  .arcs circle{animation:none;opacity:1}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">ArcNode</a>
+    <nav><a href="#how">How it works</a><a href="#models">Models</a><a href="#join">Waitlist</a></nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <svg class="arcs" viewBox="0 0 600 600" aria-hidden="true">
+      <path pathLength="1" d="M60 540 A480 480 0 0 1 540 60"/>
+      <path pathLength="1" d="M130 540 A410 410 0 0 1 540 130"/>
+      <path pathLength="1" d="M200 540 A340 340 0 0 1 540 200"/>
+      <path pathLength="1" d="M270 540 A270 270 0 0 1 540 270"/>
+      <circle cx="540" cy="540" r="22"/>
+    </svg>
+    <div class="wrap">
+      <h1>Give XR games real AI vision.</h1>
+      <p class="lead">ArcNode is a small hardware box that runs object detection next to your XR glasses, so games can see and react to the real world without draining your phone.</p>
+      <form class="cta" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required autocomplete="email">
+        <button type="submit">Join the waitlist</button>
+      </form>
+      <p class="fine">One email when pre-orders open. No spam.</p>
+    </div>
+  </div>
+
+  <section class="how" id="how">
+    <div class="wrap">
+      <h2>Your glasses show it. ArcNode sees it.</h2>
+      <p class="sub">Heavy vision work moves off the headset and phone, so the game stays smooth.</p>
+      <div class="steps">
+        <div class="step"><h3>Capture</h3><p>Camera frames from your XR setup stream to the ArcNode over your local network.</p></div>
+        <div class="step"><h3>Detect</h3><p>A dedicated AI accelerator runs detection in real time, close to where you play.</p></div>
+        <div class="step"><h3>React</h3><p>Results flow back to the game, which can place, hide or trigger things in your room.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="models">
+    <div class="wrap">
+      <h2>Two models, one platform.</h2>
+      <p class="sub">Start small, or add FPGA acceleration for custom pipelines.</p>
+      <div class="tiers">
+        <div class="tier">
+          <h3>ArcNode SE</h3>
+          <p class="price">Target price: about $249</p>
+          <ul>
+            <li>Raspberry Pi 5 host</li>
+            <li>Hailo-8 AI accelerator</li>
+            <li>Built for drop-in XR object detection</li>
+          </ul>
+        </div>
+        <div class="tier pro">
+          <h3>ArcNode Pro</h3>
+          <p class="price">Target price: about $449</p>
+          <ul>
+            <li>Everything in SE</li>
+            <li>Kria KV260 FPGA board over Ethernet</li>
+            <li>Room for custom, low-latency vision pipelines</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" id="join">
+    <div class="wrap">
+      <h2>Be first to play with it.</h2>
+      <p class="sub">Early supporters get first access to hardware and the launch AR title.</p>
+      <form class="cta" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required autocomplete="email">
+        <button type="submit">Join the waitlist</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 ArcNode. Indianapolis, Indiana.</span>
+    <span><a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
